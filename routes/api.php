@@ -19,9 +19,6 @@ use Illuminate\Support\Facades\Auth;
 
 Route::group(['middleware' => 'api', 'prefix' => 'v8'], function () {
 
-    Route::get('test', function () {
-        dd(database_path());
-        dd(Auth::guard('api')->user());
-    });
+//    Route::resource('task', 'TaskController');
 
 });
