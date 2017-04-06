@@ -1,26 +1,39 @@
-<h1>HOME</h1>
-<!--<div ng-controller="TaskCtrl">-->
-    <!--<div class="row">-->
-        <!--<div class="user-info">-->
-            <!--<h4 class="pull-left">Hello: {{ Auth::user()->email }}</h4>-->
-            <!--<button ng-click="logout()" class="btn btn-primary">Logout</button>-->
-        <!--</div>-->
+<div class="navigation">
+    <div class="navigation-left-block">
+        <strong><p class="no-style">{{user.email}}</p></strong>
+    </div>
+    <div class="navigation-right-block">
+        <a ng-href="#!/home">Home</a>
+        <button ng-click="logout()" class="btn btn-link no-style">Logout</button>
+    </div>
+    <!--<div ng-if="{{ user.email }}" class="navigation-right-block">-->
+    <!--<a ng-href="#!/login">Login</a>-->
+    <!--<a ng-href="#!/register">Register</a>-->
     <!--</div>-->
-    <!--<hr>-->
-    <!--<div class="row">-->
-        <!--<form name="taskForm" class="col-md-4">-->
-            <!--<div class="form-group">-->
-                <!--<textarea name="text" ng-model="text" placeholder="Text" class="form-control" rows="10" autofocus></textarea>-->
-            <!--</div>-->
-            <!--<button ng-click="newTask()" class="btn btn-default form-control">New task</button>-->
-        <!--</form>-->
-        <!--<div class="col-md-8">-->
-            <!--<ul>-->
-                <!--<li ng-repeat="task in tasks" class="item-task">-->
-                    <!--<p class="jumbotron"><span ng-bind="task.text"></span></p>-->
-                    <!--<button ng-click="delete(task.id)" class="btn btn-danger btn-lg">Delete</button>-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+</div>
+<div class="row">
+    <form name="taskForm" class="col-md-4 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <textarea name="text" ng-model="text" placeholder="Text" class="form-control" rows="10" ng-value="{{ text }}"
+                      autofocus></textarea>
+        </div>
+        <button ng-click="newTask()" class="btn btn-default form-control">New task</button>
+    </form>
+    <div class="col-md-8 col-sm-12 col-xs-12">
+        <ul class="no-style">
+            <li ng-repeat="task in tasks" class="item-task">
+                <div class="jumbo">
+                    <div class="task-text">
+                        <span ng-if="!is_complete" ng-bind="task.text"></span>
+                    </div>
+                    <div class="task-menu">
+                        <label>
+                            <input type="checkbox" ng-model="is_complete" ng-click="isComplete(task.id)">Mark as complete
+                        </label>
+                        <button ng-click="delete(task.id)" class="btn btn-danger btn-sm">Delete</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

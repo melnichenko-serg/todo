@@ -1,6 +1,6 @@
 todoListApp.controller('RegisterCtrl', RegisterCtrl);
 
-function RegisterCtrl($scope, $http, API_URL) {
+function RegisterCtrl($scope, $http, API_URL, $window) {
     $scope.register = function () {
         let data = {
             'email': $scope.email,
@@ -9,7 +9,7 @@ function RegisterCtrl($scope, $http, API_URL) {
         };
 
         $http.post(API_URL + 'register', data).then(function (response) {
-            location.reload();
+            $window.location.href = '#!/home';
         }, function (response) {
             alert(response.statusText);
         });

@@ -25,7 +25,7 @@ class TaskController extends Controller
         $validator = $this->validator($request->all());
 
         if ($validator->invalid()) {
-            return response()->json(["error" => $validator->errors()], 422);
+            return response()->json($validator->errors(), 422);
         }
 
         //create new task with auth user
@@ -68,12 +68,12 @@ class TaskController extends Controller
     }
 
     /**
-     * @param Task $task
-     * @return bool|null
+     * @param $task
+     * @return int
      */
-    public function destroy(Task $task)
+    public function destroy($task)
     {
-        return $task->delete();
+        return Task::destroy($task);
     }
 
     /**
@@ -83,7 +83,7 @@ class TaskController extends Controller
     private function validator(array $data)
     {
         return Validator::make($data, [
-            'text' => 'required|min:3',
+            'text' => 'required',
         ]);
     }
 }

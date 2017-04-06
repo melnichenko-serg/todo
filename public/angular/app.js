@@ -5,19 +5,23 @@ let todoListApp = angular.module('todoList', ['ngRoute'])
 function router($routeProvider) {
     $routeProvider
         .when('/home', {
-            templateUrl: './public/angular/templates/home.html',
-            controller: 'TaskCtrl'
+            templateUrl: 'angular/templates/home.html',
+            controller: 'HomeCtrl',
+            controllerAs: 'home'
         })
         .when('/login', {
-            templateUrl: 'public/angular/templates/login.html',
-            controller: 'LoginCtrl'
+            templateUrl: 'angular/templates/login.html',
+            controller: 'LoginCtrl',
+            controllerAs: 'login'
         })
         .when('/register', {
-            templateUrl: 'public/angular/templates/login.html',
-            controller: 'RegisterCtrl'
+            templateUrl: 'angular/templates/register.html',
+            controller: 'RegisterCtrl',
+            controllerAs: 'register'
         })
         .otherwise({
-            redirectTo: '/'
+            templateUrl: 'angular/templates/home.html',
+            controller: 'TaskCtrl'
         });
 }
 
