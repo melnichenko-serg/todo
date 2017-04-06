@@ -7,6 +7,7 @@
     <title>{{ config('app.name') }}</title>
 
     <script src="{{ asset('angular/libs/angular.js') }}" defer></script>
+    <script src="{{ asset('angular/libs/angular-route.js') }}" defer></script>
     <script src="{{ asset('angular/app.js') }}" defer></script>
     <script src="{{ asset('angular/controllers/TaskCtrl.js') }}" defer></script>
     <script src="{{ asset('angular/controllers/LoginCtrl.js') }}" defer></script>
@@ -17,6 +18,8 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 <body>
+
+<ng-view></ng-view>
 
 <div class="container">
     @if(Auth::check())

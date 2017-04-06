@@ -1,23 +1,26 @@
-let todoListApp = angular.module('todoList', []).constant('API_URL', 'http://localhost:8000/');
+let todoListApp = angular.module('todoList', ['ngRoute'])
+    .config(router)
+    .constant('API_URL', 'http://localhost:8000/');
 
-// todoListApp.config(['$routeProvider', function ($routeProvide) {
-//     $routeProvide
-//         .when('/task', {
-//             templateUrl: 'public/angular/templates/taskList.html',
-//             controller: 'TaskCtrl'
-//         })
-//         .when('/login', {
-//             templateUrl: 'public/angular/templates/login.html',
-//             controller: 'LoginCtrl'
-//         })
-//         .when('/register', {
-//             templateUrl: 'public/angular/templates/login.html',
-//             controller: 'RegisterCtrl'
-//         })
-//         .otherwise({
-//             redirectTo: '/'
-//         });
-// }]);
+function router($routeProvider) {
+    $routeProvider
+        .when('/home', {
+            templateUrl: 'public/angular/templates/home.html',
+            controller: 'TaskCtrl'
+        })
+        .when('/login', {
+            templateUrl: 'public/angular/templates/login.html',
+            controller: 'LoginCtrl'
+        })
+        .when('/register', {
+            templateUrl: 'public/angular/templates/login.html',
+            controller: 'RegisterCtrl'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+}
+
 // todoListApp.controller('LoginCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 //     console.log($location.url());
 //     console.log($location.path());
