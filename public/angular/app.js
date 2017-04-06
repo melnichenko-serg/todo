@@ -5,7 +5,7 @@ let todoListApp = angular.module('todoList', ['ngRoute'])
 function router($routeProvider) {
     $routeProvider
         .when('/home', {
-            templateUrl: 'public/angular/templates/home.html',
+            templateUrl: './public/angular/templates/home.html',
             controller: 'TaskCtrl'
         })
         .when('/login', {
