@@ -55,10 +55,16 @@ class TaskController extends Controller
     /**
      * @param Request $request
      * @param Task $task
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Task $task)
     {
+        $validator = $this->validator($request->all());
+        if ($validator->invalid()) {
+            return response()->json($validator->errors(), 422);
+        }
 
+        $task->update($request->all());
     }
 
     /**
