@@ -20,11 +20,9 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'api/v1'], function () {
-
     Route::get('init', function () {
         return response()->json(Auth::user());
     });
-
     Route::resource('task', 'TaskController');
-
+    Route::put('task-isActive/{task}', 'TaskController@isComplete');
 });

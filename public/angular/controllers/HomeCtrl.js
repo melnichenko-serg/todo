@@ -1,6 +1,6 @@
 todoListApp.controller('HomeCtrl', function HomeCtrl($scope, $http, API_URL, $window) {
 
-    // console.log($scope);
+    console.log($scope);
 
     $http.get(API_URL + 'api/v1/init').then(function (response) {
         $scope.user = response.data;
@@ -9,6 +9,10 @@ todoListApp.controller('HomeCtrl', function HomeCtrl($scope, $http, API_URL, $wi
     });
 
     $http.get(API_URL + 'api/v1/task').then(function successCallback(response) {
+        // let data = {
+        //     'text':response.data.text,
+        //     'end': response.data.end,
+        // };
         $scope.tasks = response.data;
     }, function errorCallback(response) {
         $window.location.href = '#!/login';
@@ -25,6 +29,7 @@ todoListApp.controller('HomeCtrl', function HomeCtrl($scope, $http, API_URL, $wi
     $scope.newTask = function () {
         let data = {
             'text': $scope.text,
+            'end': $scope.end.dateTime
         };
         $http.post(API_URL + 'api/v1/task', data).then(function (response) {
             $scope.tasks.push(response.data);
@@ -35,10 +40,16 @@ todoListApp.controller('HomeCtrl', function HomeCtrl($scope, $http, API_URL, $wi
     };
 
     $scope.isComplete = function (taskId) {
+        let data = {'is_complete': 1};
 
-        $http.put(API_URL + 'api/v1/task/' + taskId, {'is_complete': 1}).then(function (response) {
-            console.log();
-            // $window.location.href = '#!/login';
+        $http.put(API_URL + 'api/v1/task-isActive/' + taskId, data).then(function (response) {
+            for (let i = $scope.tasks.length; i--;) {
+                if ($scope.tasks[i].id !== taskId) {
+                    continue;
+                }
+                $scope.tasks.splice(i, 1);
+            }
+            $window.location.href = '#!/home';
         }, function errorCallback(response) {
             console.log(response);
         });
@@ -59,3 +70,16 @@ todoListApp.controller('HomeCtrl', function HomeCtrl($scope, $http, API_URL, $wi
     };
 
 });
+
+todoListApp.filter('sortByDate', function () {
+
+});
+
+// function getNumList(scope, id) {
+//     for (let i = scope.tasks.length; i--;) {
+//         if (scope.tasks[i].id !== id) {
+//             continue;
+//         }
+//         scope.tasks.splice(i, 1);
+//     }
+// }

@@ -16,7 +16,7 @@ a, .btn-link {
 a:hover, .btn-link:hover {
     text-decoration: none;
     color: #d8dbdd;
-    display: block;
+    /*display: block;*/
 }
 
 label {
@@ -25,11 +25,6 @@ label {
     justify-content: center;
     align-items: center;
 }
-
-
-
-
-
 
 .jumbo {
     width: 100%;
@@ -58,7 +53,8 @@ label {
     justify-content: space-between;
 }
 
-.task-menu {
+
+.task-menu, .task-text {
     display: flex;
     flex-direction: column;
 }

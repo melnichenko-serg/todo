@@ -23,7 +23,8 @@ class CreateTasksTable extends Migration
                 ->onUpdate('cascade');
 
             $table->text('text');
-            $table->boolean('is_active')->default(false);
+            $table->timestamp('end');
+            $table->boolean('is_complete')->default(false);
             $table->timestamps();
         });
     }

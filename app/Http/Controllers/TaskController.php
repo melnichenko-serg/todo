@@ -45,26 +45,22 @@ class TaskController extends Controller
     }
 
     /**
-     * @param Task $task
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
-
-    /**
      * @param Request $request
-     * @param Task $task
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
+     * @internal param Task $task
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
         $validator = $this->validator($request->all());
         if ($validator->invalid()) {
             return response()->json($validator->errors(), 422);
         }
 
-        $task->update($request->all());
+        $task = Task::find($id)->first();
+
+//        $task->update($request->all());
+        $task->where('id', $id)->update($request->all());
     }
 
     /**
@@ -76,6 +72,16 @@ class TaskController extends Controller
         return Task::destroy($task);
     }
 
+    public function isComplete($id)
+    {
+        $task = Task::find($id)->first();
+
+        //todo create scopeById in model
+        $task->where('id', $id)->update([
+            'is_complete' => 1
+        ]);
+    }
+
     /**
      * @param array $data
      * @return \Illuminate\Validation\Validator
@@ -84,6 +90,7 @@ class TaskController extends Controller
     {
         return Validator::make($data, [
             'text' => 'required',
+            'end' => 'date'
         ]);
     }
 }
