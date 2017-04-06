@@ -1,4 +1,5 @@
 todoListApp.controller('LoginCtrl', function LoginCtrl($scope, $http, API_URL, $window) {
+
     $scope.login = function () {
         let data = {
             'email': $scope.loginData.email,
@@ -12,4 +13,5 @@ todoListApp.controller('LoginCtrl', function LoginCtrl($scope, $http, API_URL, $
             alert(response.statusText);
         });
     };
+
 });

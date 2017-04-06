@@ -9,10 +9,7 @@ todoListApp.controller('HomeCtrl', function HomeCtrl($scope, $http, API_URL, $wi
     });
 
     $http.get(API_URL + 'api/v1/task').then(function successCallback(response) {
-        // let data = {
-        //     'text':response.data.text,
-        //     'end': response.data.end,
-        // };
+
         $scope.tasks = response.data;
     }, function errorCallback(response) {
         $window.location.href = '#!/login';
