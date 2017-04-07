@@ -8,9 +8,17 @@ li {
     list-style: none;
 }
 
+input[type=checkbox], input[type=radio] {
+    margin: 0;
+}
+
 a, .btn-link {
     color: #f5f8fa;
     display: block;
+}
+
+.link-form {
+    margin-right: 1rem;
 }
 
 a:hover, .btn-link:hover {
@@ -29,11 +37,11 @@ label {
 .jumbo {
     width: 100%;
     display: flex;
-    margin: 0 0 1rem 0 ;
+    margin: 0 0 1rem 0;
     padding: 1rem;
     justify-content: space-between;
     align-items: center;
-    background-color:#5e5e5e;
+    background-color: #5e5e5e;
     color: #f5f8fa;
 }
 
@@ -58,6 +66,25 @@ label {
     flex-direction: column;
 }
 
+.task-text {
+    padding-right: 1rem;
+    width: 70%;
+}
+
+.task-menu {
+    width: 30%;
+}
+
+.label-task-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.span-task-menu {
+    margin-left: 1rem;
+}
+
 .navigation-right-block {
     display: flex;
     align-items: center;
@@ -71,7 +98,7 @@ label {
     margin-right: 0;
 }
 
-.login-form-block, .register-form-block{
+.login-form-block, .register-form-block {
     margin-top: 6rem;
 }
 
@@ -88,7 +115,7 @@ label {
 }
 
 .btn-form {
-    width: 50%;
+    width: 100%;
     background-color: #f5f8fa;
     border-color: #d6d9db;
 }
@@ -96,4 +123,8 @@ label {
 .btn-form:hover {
     background-color: #d6d9db;
     border-color: #b1b4b6;
+}
+
+.form-date {
+    width: 100%;
 }

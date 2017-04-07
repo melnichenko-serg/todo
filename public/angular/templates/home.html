@@ -1,54 +1,47 @@
 <!--<div ng-controller="HomeCtrl">-->
-    <div class="navigation">
-        <div class="navigation-left-block">
-            <strong><p class="no-style">{{user.email}}</p></strong>
-        </div>
-        <div class="navigation-right-block">
-            <a ng-href="#!/home">Home</a>
-            <button ng-click="logout()" class="btn btn-link no-style">Logout</button>
-        </div>
-        <!--<div ng-if="{{ user.email }}" class="navigation-right-block">-->
-        <!--<a ng-href="#!/login">Login</a>-->
-        <!--<a ng-href="#!/register">Register</a>-->
-        <!--</div>-->
+<div class="navigation">
+    <div class="navigation-left-block">
+        <strong><p class="no-style">{{user.email}}</p></strong>
     </div>
-    <div class="row">
-        <form name="taskForm" class="col-md-4 col-sm-12 col-xs-12">
-            <div class="form-group">
+    <div class="navigation-right-block">
+        <a ng-href="#!/home">Home</a>
+        <button ng-click="logout()" class="btn btn-link no-style">Logout</button>
+    </div>
+</div>
+<div class="row">
+    <form name="taskForm" class="col-md-4 col-sm-12 col-xs-12">
+        <div class="form-group">
                 <textarea name="text" ng-model="text" placeholder="Text" class="form-control" rows="10" ng-value="{{ text }}" required
                           autofocus></textarea>
-            </div>
-            <!--<div class="form-group">-->
-            <!--<label>End task-->
-            <!--<input type="date" ng-model="end" >-->
-            <!--</label>-->
-            <!--</div>-->
-            <button ng-click="newTask()" class="btn btn-default form-control" ng-show="text.length > 0">New task</button>
-        </form>
-        <div class="col-md-8 col-sm-12 col-xs-12">
-            <!--<div>-->
-            <!--<label>-->
-            <!--<select>-->
-            <!--<option ng-model="filterDate" ng-init="filterDate=new">New</option>-->
-            <!--<option ng-model="filterDate" ng-init="filterDate=old">Old</option>-->
-            <!--</select>-->
-            <!--</label>-->
-            <!--</div>-->
-            <ul class="no-style">
-                <li ng-repeat="task in tasks" class="item-task">
-                    <div class="jumbo" ng-if="!task.is_complete">
-                        <div class="task-text">
-                            <strong>Task: </strong> <span ng-bind="task.text"></span>
-                        </div>
-                        <div class="task-menu">
-                            <label>
-                                <input type="checkbox" ng-model="is_complete" ng-click="isComplete(task.id)">Mark as complete
-                            </label>
-                            <button ng-click="delete(task.id)" class="btn btn-danger btn-sm">Delete</button>
-                        </div>
-                    </div>
-                </li>
-            </ul>
         </div>
+        <div class="form-group">
+            <label>
+                <input type="date" ng-model="endDay" class="form-date">
+            </label>
+        </div>
+        <div class="form-group">
+            <button ng-click="newTask()" class="btn btn-form form-control" ng-show="text.length > 0">New task</button>
+        </div>
+    </form>
+    <div class="col-md-8 col-sm-12 col-xs-12">
+        <ul class="no-style">
+            <li ng-repeat="task in tasks | orderBy:task.endDay " class="item-task">
+                <div class="jumbo" ng-if="!task.is_complete">
+                    <div class="task-text">
+                        <strong>Task: </strong> <span ng-bind="task.text"></span>
+                        <hr>
+                        <strong>End date: </strong> <span ng-bind="task.endDay | date:'dd-MM-yyyy'"></span>
+                    </div>
+                    <div class="task-menu">
+                        <label class="label-task-menu">
+                            <input type="checkbox" ng-model="is_complete" ng-click="isComplete(task.id)" class="checkbox-task-menu">
+                            <span class="span-task-menu">Mark as complete</span>
+                        </label>
+                        <button ng-click="delete(task.id)" class="btn btn-danger btn-sm">Delete</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
+</div>
 <!--</div>-->

@@ -21,12 +21,16 @@ todoListApp.controller('HomeCtrl', function HomeCtrl($scope, $http, API_URL, $wi
     };
 
     $scope.newTask = function () {
-        $http.post(API_URL + 'api/v1/task', {text: $scope.text}).then(function (result) {
+        if (($scope.text !== undefined && $scope.endDay !== undefined)) {
+            $http.post(API_URL + 'api/v1/task', {text: $scope.text, endDay: $scope.endDay}).then(function (result) {
                 $scope.tasks.push(result.data);
                 $scope.text = '';
             }, function (response) {
                 alert(response.statusText);
             });
+        } else {
+            //todo create notification
+        }
     };
 
     $scope.isComplete = function (taskId) {
