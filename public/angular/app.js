@@ -1,4 +1,4 @@
-let todoListApp = angular.module('todoList', ['ngRoute'])
+let todoListApp = angular.module('todoList', ['ngRoute', 'ngMessages'])
     .config(router)
     .constant('API_URL', 'http://localhost:8000/');
 

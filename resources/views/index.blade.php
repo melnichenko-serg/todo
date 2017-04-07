@@ -8,6 +8,7 @@
 
     <script src="{{ asset('angular/libs/angular.js') }}" defer></script>
     <script src="{{ asset('angular/libs/angular-route.js') }}" defer></script>
+    <script src="{{ asset('angular/libs/angular-messages.js') }}" defer></script>
     <script src="{{ asset('angular/app.js') }}" defer></script>
     <script src="{{ asset('angular/controllers/HomeCtrl.js') }}" defer></script>
     <script src="{{ asset('angular/controllers/LoginCtrl.js') }}" defer></script>

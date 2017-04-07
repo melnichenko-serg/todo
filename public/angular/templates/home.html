@@ -1,55 +1,58 @@
-<div class="navigation">
-    <div class="navigation-left-block">
-        <strong><p class="no-style">{{user.email}}</p></strong>
+<div ng-controller="HomeCtrl">
+    <div class="navigation">
+        <div class="navigation-left-block">
+            <strong><p class="no-style">{{user.email}}</p></strong>
+        </div>
+        <div class="navigation-right-block">
+            <a ng-href="#!/home">Home</a>
+            <button ng-click="logout()" class="btn btn-link no-style">Logout</button>
+        </div>
+        <!--<div ng-if="{{ user.email }}" class="navigation-right-block">-->
+        <!--<a ng-href="#!/login">Login</a>-->
+        <!--<a ng-href="#!/register">Register</a>-->
+        <!--</div>-->
     </div>
-    <div class="navigation-right-block">
-        <a ng-href="#!/home">Home</a>
-        <button ng-click="logout()" class="btn btn-link no-style">Logout</button>
-    </div>
-    <!--<div ng-if="{{ user.email }}" class="navigation-right-block">-->
-    <!--<a ng-href="#!/login">Login</a>-->
-    <!--<a ng-href="#!/register">Register</a>-->
-    <!--</div>-->
-</div>
-<div class="row">
-    <form name="taskForm" class="col-md-4 col-sm-12 col-xs-12">
-        <div class="form-group">
-            <textarea name="text" ng-model="text" placeholder="Text" class="form-control" rows="10" ng-value="{{ text }}"
-                      autofocus></textarea>
-        </div>
-        <div class="form-group">
-            <label>End task
-                <input type="date" ng-model="end">
-            </label>
-        </div>
-        <button ng-click="newTask()" class="btn btn-default form-control">New task</button>
-    </form>
-    <div class="col-md-8 col-sm-12 col-xs-12">
-        <div>
-            <label>
-                <select>
-                    <option ng-model="filterDate" ng-init="filterDate=new">New</option>
-                    <option ng-model="filterDate" ng-init="filterDate=old">Old</option>
-                </select>
-            </label>
-        </div>
-
-        <ul class="no-style">
-            <li ng-repeat="task in tasks | filter:filterNew" class="item-task">
-                <div class="jumbo" ng-if="!task.is_complete">
-                    <div class="task-text">
-                        Task: <span ng-bind="task.text"></span>
-                        <hr>
-                        End: <span ng-bind="task.end" ></span>
-                    </div>
-                    <div class="task-menu">
-                        <label>
-                            <input type="checkbox" ng-model="is_complete" ng-click="isComplete(task.id)">Mark as complete
-                        </label>
-                        <button ng-click="delete(task.id)" class="btn btn-danger btn-sm">Delete</button>
-                    </div>
+    <div class="row">
+        <form name="taskForm" class="col-md-4 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <textarea name="myText" ng-model="text" placeholder="Text" class="form-control" rows="10" ng-value="{{ text }}" ng-minlength="1" required></textarea>
+                <div ng-messages="taskForm.myText.$error">
+                    <div ng-message="required">Text must be required</div>
                 </div>
-            </li>
-        </ul>
+            </div>
+            <div class="form-group">
+                <label>End task
+                    <input type="date" ng-model="end" required>
+                </label>
+            </div>
+            <button ng-click="newTask()" class="btn btn-default form-control">New task</button>
+        </form>
+        <div class="col-md-8 col-sm-12 col-xs-12">
+            <!--<div>-->
+            <!--<label>-->
+            <!--<select>-->
+            <!--<option ng-model="filterDate" ng-init="filterDate=new">New</option>-->
+            <!--<option ng-model="filterDate" ng-init="filterDate=old">Old</option>-->
+            <!--</select>-->
+            <!--</label>-->
+            <!--</div>-->
+            <ul class="no-style">
+                <li ng-repeat="task in tasks | filter:filterNew" class="item-task">
+                    <div class="jumbo" ng-if="!task.is_complete">
+                        <div class="task-text">
+                            Task: <span ng-bind="task.text"></span>
+                            <hr>
+                            End: <span ng-bind="task.end"></span>
+                        </div>
+                        <div class="task-menu">
+                            <label>
+                                <input type="checkbox" ng-model="is_complete" ng-click="isComplete(task.id)">Mark as complete
+                            </label>
+                            <button ng-click="delete(task.id)" class="btn btn-danger btn-sm">Delete</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

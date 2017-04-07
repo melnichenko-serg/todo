@@ -1,6 +1,6 @@
-todoListApp.controller('HomeCtrl', function HomeCtrl($scope, $http, API_URL, $window) {
+todoListApp.controller('HomeCtrl', function HomeCtrl($scope, $http, API_URL, $window, $log) {
 
-    console.log($scope);
+    // log.error(request);
 
     $http.get(API_URL + 'api/v1/init').then(function (response) {
         $scope.user = response.data;
@@ -26,14 +26,17 @@ todoListApp.controller('HomeCtrl', function HomeCtrl($scope, $http, API_URL, $wi
     $scope.newTask = function () {
         let data = {
             'text': $scope.text,
-            'end': $scope.end.dateTime
+            'end': $scope.end
         };
-        $http.post(API_URL + 'api/v1/task', data).then(function (response) {
-            $scope.tasks.push(response.data);
-            $scope.text = '';
-        }, function (response) {
-            alert(response.statusText);
-        });
+
+        if (data.text !== undefined || data.end !== undefined) {
+            $http.post(API_URL + 'api/v1/task', data).then(function (response) {
+                $scope.tasks.push(response.data);
+                $scope.text = '';
+            }, function (response) {
+                alert(response.statusText);
+            });
+        }
     };
 
     $scope.isComplete = function (taskId) {
@@ -69,7 +72,7 @@ todoListApp.controller('HomeCtrl', function HomeCtrl($scope, $http, API_URL, $wi
 });
 
 todoListApp.filter('sortByDate', function () {
-
+    //todo create sort
 });
 
 // function getNumList(scope, id) {

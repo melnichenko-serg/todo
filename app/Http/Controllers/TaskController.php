@@ -30,6 +30,7 @@ class TaskController extends Controller
 
         //create new task with auth user
         $newTask = new Task($request->all());
+
         Auth::user()->tasks()->save($newTask);
 
         return response()->json($newTask, 201);
