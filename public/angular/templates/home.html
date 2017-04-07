@@ -1,4 +1,4 @@
-<div ng-controller="HomeCtrl">
+<!--<div ng-controller="HomeCtrl">-->
     <div class="navigation">
         <div class="navigation-left-block">
             <strong><p class="no-style">{{user.email}}</p></strong>
@@ -15,17 +15,15 @@
     <div class="row">
         <form name="taskForm" class="col-md-4 col-sm-12 col-xs-12">
             <div class="form-group">
-                <textarea name="myText" ng-model="text" placeholder="Text" class="form-control" rows="10" ng-value="{{ text }}" ng-minlength="1" required></textarea>
-                <div ng-messages="taskForm.myText.$error">
-                    <div ng-message="required">Text must be required</div>
-                </div>
+                <textarea name="text" ng-model="text" placeholder="Text" class="form-control" rows="10" ng-value="{{ text }}" required
+                          autofocus></textarea>
             </div>
-            <div class="form-group">
-                <label>End task
-                    <input type="date" ng-model="end" required>
-                </label>
-            </div>
-            <button ng-click="newTask()" class="btn btn-default form-control">New task</button>
+            <!--<div class="form-group">-->
+            <!--<label>End task-->
+            <!--<input type="date" ng-model="end" >-->
+            <!--</label>-->
+            <!--</div>-->
+            <button ng-click="newTask()" class="btn btn-default form-control" ng-show="text.length > 0">New task</button>
         </form>
         <div class="col-md-8 col-sm-12 col-xs-12">
             <!--<div>-->
@@ -37,12 +35,10 @@
             <!--</label>-->
             <!--</div>-->
             <ul class="no-style">
-                <li ng-repeat="task in tasks | filter:filterNew" class="item-task">
+                <li ng-repeat="task in tasks" class="item-task">
                     <div class="jumbo" ng-if="!task.is_complete">
                         <div class="task-text">
-                            Task: <span ng-bind="task.text"></span>
-                            <hr>
-                            End: <span ng-bind="task.end"></span>
+                            <strong>Task: </strong> <span ng-bind="task.text"></span>
                         </div>
                         <div class="task-menu">
                             <label>
@@ -55,4 +51,4 @@
             </ul>
         </div>
     </div>
-</div>
+<!--</div>-->

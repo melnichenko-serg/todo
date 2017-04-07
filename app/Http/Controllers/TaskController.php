@@ -91,7 +91,7 @@ class TaskController extends Controller
     {
         return Validator::make($data, [
             'text' => 'required',
-            'end' => 'date'
+            'end' => 'required'
         ]);
     }
 }
